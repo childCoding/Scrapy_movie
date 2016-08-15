@@ -1,0 +1,102 @@
+header.page_hd div.top {
+  background-color: #333333;
+}
+header.page_hd div.top a {
+  line-height: 0;
+  display: block;
+  width: 114px;
+  margin: 0 10px;
+}
+header.page_hd div.top a img {
+  height: 40px;
+  margin: 5px 0;
+}
+header.page_hd div.search {
+  /*padding: 10px;*/
+  display: -moz-box;
+  display: -webkit-box;
+  display: box;
+}
+header.page_hd div.search input.ipt {
+  display: block;
+  width: 70%;
+  /*height: 14px;*/
+  line-height: 14px;
+  /*padding: 10px 10px;*/
+  border: 1px solid #cccccc;
+  color: #333333;
+  font-size: 16px;
+  margin-right: 3px;
+}
+header.page_hd div.search input.sbt {
+  display: block;
+  width: 30%;
+  height: 36px;
+  text-align: center;
+  font-size: 16px;
+  color: #fff;
+  background-color: #cc3333;
+  cursor: pointer;
+  border: none;
+}
+header.page_hd nav.navbar {
+  background-color: #efefef;
+  border: 1px solid #cccccc;
+  border-width: 1px 0;
+}
+header.page_hd nav.navbar a {
+  display: inline-block;
+  width: 20%;
+  height: 45px;
+  line-height: 45px;
+  color: #ffffff;
+  font-size: 16px;
+  text-align: center;
+  color: #333333;
+}
+header.page_hd nav.navbar a:hover,
+header.page_hd nav.navbar a.current {
+  background-color: #008bc8;
+  color: #ffffff;
+}
+header.gameinfo_hd div {
+  position: relative;
+  background-color: #008bc8;
+}
+header.gameinfo_hd div h1 {
+  padding: 15px 50px;
+  margin: 0 auto;
+  font-size: 20px;
+  line-height: 1.2em;
+  color: #FFF;
+  text-align: center;
+}
+header.gameinfo_hd div a {
+  display: block;
+  position: absolute;
+}
+header.gameinfo_hd div a.goback {
+  left: 5px;
+  top: 0;
+  width: 29px;
+  height: 28px;
+}
+header.gameinfo_hd div a.home {
+  top: 0;
+  right: 5px;
+  width: 32.5px;
+  height: 28px;
+}
+header.info_hd div {
+  height: 50px;
+}
+footer.footbottom {
+  border-top: 2px solid #008bc8;
+}
+footer.footbottom p {
+  text-align: center;
+  color: #999999;
+  background-color: #efefef;
+  height: 35px;
+  line-height: 35px;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lange="ZH">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="apple-touch-fullscreen" content="yes"> <!--  一会试验下是否有必要存在 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="x-rim-auto-match" content="none"/>
+  <meta name="HandheldFriendly" content="true"/>
+  <title>资讯详情页</title>
+  <link rel="stylesheet" href="css/widget.css">
+  <link rel="stylesheet" href="css/idangerous.swiper.css">
+  <link rel="stylesheet" href="css/index.css">
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/idangerous.swiper-2.1.min.js"></script>
+  <script src="js/info.js" type="text/javascript"></script>
+</head>
+<body>
+  <div class="wrapper">
+    <header class="gameinfo_hd info_hd">
+      <div class="i_top">
+        <a href="javascript:history.go(-1);" class="goback mt10"><i class="base goback"></i></a>
+        <a href="index.html" class="home mt10"><i class="base home"></i></a>
+      </div>
+    </header>
+    <section class="info_content">
+      <h1 class="mt10">《巨魔大战维京人》：植物大战僵尸升华版</h1>
+      <p class="from">来源：155.cn&nbsp;&nbsp;2014-07-23</p>
+      <div class="cons mt10">
+        <p class="wenzi"> 说起《巨魔大战维京人》这款游戏，估计没有几个玩家听说过，但一提到《植物大战僵尸》那可就是家喻户晓了。没错，本作《巨魔大战维京人》正是《植物大战僵尸》的翻版，不仅是翻版，而且还是修改版。这款游戏到底有什么特色呢，请听小编娓娓道来。</p>
+        <p class="t-center"><img src="images/con_img.jpg" alt=""></p>
+        <p class="wenzi">一听到翻版，估计很多玩家就开始为原版愤愤不平了。不过在小编看来，山寨和创新，只不过是硬币的正反面。任何公司都是从模仿起步，不会模仿，何来创新。况且这款游戏确实有自己的特色，值得一玩。游戏的背景设置在一片丛林之中，在绿树围绕的田野上，一群拿着武器的维京人正准备攻击巨魔族，游戏中浓厚的色彩填充画面显得非常的有层次感，春夏秋冬的四季变化让画面更加丰富。</p>
+        <p class="t-center"><img src="images/con_img.jpg" alt=""></p>
+        <p class="wenzi">一听到翻版，估计很多玩家就开始为原版愤愤不平了。不过在小编看来，山寨和创新，只不过是硬币的正反面。任何公司都是从模仿起步，不会模仿，何来创新。况且这款游戏确实有自己的特色，值得一玩。游戏的背景设置在一片丛林之中，在绿树围绕的田野上，一群拿着武器的维京人正准备攻击巨魔族，游戏中浓厚的色彩填充画面显得非常的有层次感，春夏秋冬的四季变化让画面更加丰富。</p>
+      </div>
+    </section>
+  </div>
+  <footer class="footbottom">
+    <p>2012-2013 155.cn</p>
+  </footer>
+  <script>
+  $(function(){
+    var mySwiper = new Swiper('.swiper-container',{
+      pagination: '.pagination',
+      paginationClickable: true,
+      mode: 'vertical'
+    });
+
+    $('.coninfo').tabs({
+        tabSelector: 'nav.sidenavbar a',
+        current: 'current',
+        tabPanel: 'div.con_box',
+        animate: 'fadeIn'
+    });
+  })
+  </script>
+</body>
+</html>

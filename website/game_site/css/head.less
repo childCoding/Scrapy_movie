@@ -1,0 +1,129 @@
+@import "var";
+
+header {
+  &.page_hd {
+    div {
+      &.top {
+        background-color: @def;
+
+        a {
+          line-height: 0;
+          display: block;
+          width: 114px;
+          margin: 0 10px;
+
+          img {
+            height: 40px;
+            margin: 5px 0;
+          }
+        }
+      }
+
+      &.search {
+        padding: 10px;
+        display: -moz-box; 
+        display: -webkit-box; 
+        display: box; 
+
+        input.ipt {
+          display: block;
+          width: 70%;
+          height: 14px;
+          line-height: 14px;
+          padding: 10px 10px;
+          border: 1px solid @grey_cc;
+          color: @def;
+          font-size: 16px;
+          margin-right: 3px;
+        }
+
+        input.sbt {
+          display: block;
+          width: 22%;
+          height: 36px;
+          text-align: center;
+          font-size: 16px;
+          color: #fff;
+          background-color: @yellow;
+          cursor: pointer;
+          border: none;
+        }
+      }
+    }
+
+    nav.navbar {
+      background-color: @white_grey;
+      border: 1px solid @grey_cc;
+      border-width: 1px 0;
+
+      a {
+        display: inline-block;
+        width: 20%;
+        height: 45px;
+        line-height: 45px;
+        color: @white;
+        font-size: 16px;
+        text-align: center;
+        color: @def;
+
+        &:hover, &.current {
+          background-color: @blue;
+          color: @white;
+        }
+      }
+    }
+  }
+
+  &.gameinfo_hd {
+    div {
+      position: relative;
+      background-color: @blue;
+
+      h1 {
+        padding: 15px 50px;
+        margin: 0 auto;
+        font-size: 20px;
+        line-height: 1.2em;
+        color: #FFF;
+        text-align: center;
+      }
+
+      a {
+        display: block;
+        position: absolute;
+
+        &.goback {
+          left: 5px;
+          top: 0;
+          width: 29px;
+          height: 28px;
+        }
+
+        &.home {
+          top: 0;
+          right: 5px;
+          width: 32.5px;
+          height: 28px;
+        }
+      }
+    }
+  }
+
+  &.info_hd {
+    div {
+      height: 50px;
+    }
+  }
+}
+
+footer.footbottom {
+  border-top: 2px solid @blue;
+  p {
+    text-align: center;
+    color: @grey_99;
+    background-color: @white_grey;
+    height: 35px;
+    line-height: 35px;
+  }
+}
+
