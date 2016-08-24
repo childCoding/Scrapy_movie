@@ -8,7 +8,10 @@ from scrapy.item import Item, Field
 class TutorialItem(Item):
     # define the fields for your item here like:
     # name = Field()
+	type = scrapy.Field()
 	title = scrapy.Field()
 	issue_date = scrapy.Field()
 	content = scrapy.Field()
 	download_url = scrapy.Field()
+	image_urls = scrapy.Field()
+	images = scrapy.Field()

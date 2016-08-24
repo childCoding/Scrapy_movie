@@ -27,6 +27,7 @@ CREATE TABLE `movie` (
   `type` varchar(48) CHARACTER SET utf8 DEFAULT NULL,
   `date` date DEFAULT NULL,
   `title` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
+  `icon` varchar(200) CHARACTER SET utf8 DEFAULT NULL, 
   `content` text CHARACTER SET utf8,
   `url` text CHARACTER SET utf8,
   PRIMARY KEY (`id`)

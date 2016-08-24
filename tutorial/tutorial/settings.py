@@ -13,4 +13,8 @@ SPIDER_MODULES = ['tutorial.spiders']
 NEWSPIDER_MODULE = 'tutorial.spiders'
 USER_AGENT = '%s/%s' % (BOT_NAME, BOT_VERSION)
 
-ITEM_PIPELINES = {'tutorial.pipelines.TutorialPipeline':100}
+ITEM_PIPELINES = {
+	'tutorial.pipelines.TutorialPipeline':100,
+	'scrapy.contrib.pipeline.images.ImagesPipeline':1,
+}
+IMAGES_STORE = '/root/tanpan/Scrapy_movie/downloadimages'
