@@ -4,9 +4,12 @@
 # See: http://doc.scrapy.org/topics/item-pipeline.html
 import json
 import MySQLdb as mdb
+from scrapy import log
 
 class TutorialPipeline(object):
 	def __init__(self):
+		self.item_count = 0
+		self.error_count = 0
 		self.db = mdb.connect("localhost","root","carlos940413","scrapymovie",True,charset="utf8")
 #		self.file = open("items.js","wb")
 		pass
@@ -17,13 +20,17 @@ class TutorialPipeline(object):
 	def open_spider(self,spider):
 		pass
 	def close_spider(self,spider):
+		item_msg = u'item ocunt:%d ' % self.item_count
+		error_msg = u'db error ocunt:%d ' % self.error_count
+		spider.log(item_msg , level = log.WARNING)
+		spider.log(error_msg , level = log.WARNING)
 		pass
 
 	def process_item(self, item, spider):
 		self.cursor = self.db.cursor()
-		insert_temp = "insert into movie(date,title,content,url) values('%s','%s','%s','%s')"
-		insert_sql = insert_temp % (item['issue_date'],item['title'],item['content'],item['download_url'])
-		spider.log(insert_sql)
+		insert_temp = "insert into movie(date,title,icon,content,url) values('%s','%s','%s','%s','%s')"
+		insert_sql = insert_temp % (item['issue_date'],item['title'],item['icon'],item['content'],item['download_url'])
+#		spider.log(insert_sql)
 		try:
 			self.cursor.execute(insert_sql)
 			self.db.commit()
@@ -33,7 +40,9 @@ class TutorialPipeline(object):
 #			file.write(line)
 #			file.close()
 		except mdb.Error,e:
-			spider.log(u'db error:%s' % repr(e))
+			msg = u'[%s] db error:%s' % (item['origin'],unicode(e))
+			spider.log(msg , level = log.WARNING)
 			self.db.rollback()
-
+			self.error_count = self.error_count + 1
+		self.item_count = self.item_count + 1
 		return item
