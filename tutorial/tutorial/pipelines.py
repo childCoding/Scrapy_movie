@@ -30,7 +30,7 @@ class TutorialPipeline(object):
 		self.cursor = self.db.cursor()
 		insert_temp = "insert into movie(date,title,icon,content,url) values('%s','%s','%s','%s','%s')"
 		insert_sql = insert_temp % (item['issue_date'],item['title'],item['icon'],item['content'],item['download_url'])
-#		spider.log(insert_sql)
+		spider.log(insert_sql,level = log.DEBUG)
 		try:
 			self.cursor.execute(insert_sql)
 			self.db.commit()
