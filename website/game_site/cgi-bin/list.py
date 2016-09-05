@@ -9,10 +9,10 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 
-def mysql_select(ty):
-	db = mdb.connect("localhost","root","carlos940413","scrapymovie",charset='utf8')
+def mysql_select(ty,page = 0):
+	db = mdb.connect("localhost","root","carlos_940413","scrapymovie",charset='utf8')
 	cursor = db.cursor()
-	sql = r"select * from movie where type='%s'" % ty
+	sql = r"select id,icon,type,date,title from movie where type='%s' order by date desc limit %d,%d" % (ty,page*10,10)
 
 	try:
 		result_dict = {}
@@ -23,9 +23,10 @@ def mysql_select(ty):
 		for row in results:
 			ele = {}
 			ele[u'id'] = row[0]
-			ele[u'type'] = row[1]
-#			ele[u'date'] = row[2]
-			ele[u'title'] = row[3]
+			ele[u'icon'] = row[1]
+			ele[u'type'] = row[2]
+			ele[u'date'] = unicode(row[3])
+			ele[u'title'] = row[4]
 #			ele[u'content'] = row[4]
 #			ele[u'url'] = row[5]
 			result_dict[u'list'].append(ele)
@@ -42,11 +43,12 @@ header = "Content-Type:text/html;charset=utf-8\r\n"
 form = cgi.FieldStorage()
 
 ty = form.getvalue('type')
+page = form.getvalue('page',0)
 
 print header
 
-if ty:
-	print mysql_select(ty)
+if ty and page:
+	print mysql_select(ty,int(page))
 else:
 	print json.dumps({"state":"failure","msg":"参数不足！"},ensure_ascii=False)
 

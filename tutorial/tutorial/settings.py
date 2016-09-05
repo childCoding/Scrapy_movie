@@ -17,7 +17,7 @@ ITEM_PIPELINES = {
 	'tutorial.pipelines.TutorialPipeline':100,
 	'scrapy.contrib.pipeline.images.ImagesPipeline':1,
 }
-IMAGES_STORE = '/root/tanpan/Scrapy_movie/downloadimages'
+IMAGES_STORE = 'var/www/Scrapy_movie/downloadimages'
 
 LOG_LEVEL = 'WARNING'
 #LOG_FILE = '/root/tanpan/Scrapy_movie/msg.log'

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lange="ZH">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="apple-touch-fullscreen" content="yes"> <!--  一会试验下是否有必要存在 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="x-rim-auto-match" content="none"/>
+  <meta name="HandheldFriendly" content="true"/>
+  <title>安卓网首页</title>
+
+ <link rel="stylesheet" href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.css">
+ 
+  <link rel="stylesheet" href="css/widget.css">
+  <link rel="stylesheet" href="css/idangerous.swiper.css">
+  <link rel="stylesheet" href="css/index.css">
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/idangerous.swiper-2.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/jquery.bootstrap-autohidingnavbar.js"></script>
+	<script type="text/javascript">
+        //          
+        $(document).ready(function() {
+                $("ul.list li").click(function() {
+                       // alert(this.id); // get id of clicked li
+                       // alert(this.href()); // get id of clicked li
+                });
+        });
+	</script>
+
+  <script >
+    function getURLParameter(name) {
+		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+	}
+	function loaddata ()
+	{
+		var xmlhttp = new XMLHttpRequest()
+		xmlhttp.onreadystatechange = function()
+		{
+			if( xmlhttp.readyState == 4 && xmlhttp.status == 200)
+			{
+				var obj = eval("("+xmlhttp.responseText+")")
+				if (obj["state"] =="success")
+				{
+					//alert(obj.list[0]["id"])
+					var content = document.getElementById("list_content")
+					var h1 = document.createElement("h1")
+					h1.setAttribute("class","ttl")
+					var more = document.createElement("a")
+					more.setAttribute("class","more")
+					more.innerHTML ="更多"
+					var ul = document.createElement("ul")
+					ul.setAttribute("class","list")
+					for(i in obj.list)
+					{
+						//alert()
+							
+						var url = "detail.html?id="+obj.list[i]["id"]
+						var li = document.createElement("li");
+						li.setAttribute("id",obj.list[i]["id"])
+						li.setAttribute("href",url)
+						
+						var p = document.createElement("p")
+						var img = document.createElement("img")
+						img.setAttribute("src",obj.list[i]["icon"])
+						p.appendChild(img)
+						
+						var em = document.createElement("em")
+						var a = document.createElement("a")
+						a.setAttribute("href",url)
+						a.setAttribute("class","a_grey")
+						a.innerHTML = obj.list[i].title
+						em.appendChild(a)
+						
+						p.appendChild(em)
+						p.innerHTML = p.innerHTML + "<br>"+obj.list[i].date +"<br>&nbsp "
+						
+						li.appendChild(p)
+						ul.appendChild(li)
+
+						h1.innerHTML = "<p>"+ obj.list[i]["type"] +"</p>"
+					}
+					
+					content.appendChild(h1)
+					content.appendChild(ul)
+					content.appendChild(more)			
+				}
+				
+			}
+		}
+		var ty = getURLParameter("type")
+		var page = getURLParameter("page")
+		if(ty && page)
+		{
+			var url = "cgi-bin/list.py?type=" + ty +"&page="+page
+			xmlhttp.open("GET",url,true);
+			xmlhttp.send();
+		}
+
+	//	alert(ty+page)
+	}
+	//loaddata()
+	//alert("dd");
+	</script>
+</head>
+<body>
+    <header class="page_hd  navbar-default navbar-fixed-top" >
+      <div class="search">
+        <input type="text" class="ipt"><input type="submit" class="sbt" value="搜索">
+      </div>
+    </header>
+    <header class="page_hd navbar navbar-default navbar-fixed-bottom" role="navigation">
+      <nav class="navbar ">
+        <a href="index.html" class="current">首页</a><a href="information.html">单机</a><a href="information.html">网游</a><a href="information.html">资讯</a><a href="information.html">专题</a>
+      </nav>
+    </header>
+
+  <div class="wrapper ">
+		<!--只是为了占位置-->
+  	 <header class="page_hd " >
+
+	</header>
+	
+    <div class="swiper-container">
+
+      <div class="swiper-wrapper" style="width: 100%;">
+        <div class="swiper-slide blue-slide">
+          <img src="images/1.jpg" alt="">
+        </div>
+        <div class="swiper-slide red-slide">
+            <img src="images/2.jpg" alt="">
+        </div>
+        <div class="swiper-slide orange-slide">
+            <img src="images/3.jpg" alt="">
+        </div>
+      </div>
+      <div class="pagination"></div>
+    </div>
+    <section id = "list_content" class="content">
+      <h1 id = "list_title" class="ttl"><p>热门游戏</p></h1>
+      <ul class="list">
+		
+        <li id="10"  href="information_detail.html" >		
+          <p><img src="http://pic.yupoo.com/arthurfihd/FKXqYfKd/60G7S.jpg" alt=""><em><a href="information_detail.html" class="a_grey">全民捕鱼2大战美人鱼</a></em><br>捕鱼 大小:6M<br> 2014最牛捕鱼，快来捕获美人鱼</p>
+	</li>
+
+      </ul>
+      <a href="" class="more">更多</a>
+    </section>
+  </div>
+  <footer class="footbottom">
+    <p>2012-2018 </p>
+  </footer>
+  <!--只是为了占位置-->
+  <header class="page_hd">
+      
+  </header>
+  <script>
+
+  $("div.navbar-fixed-top").autoHidingNavbar();
+  $(function(){
+    var mySwiper = new Swiper('.swiper-container',{
+    pagination: '.pagination',
+    paginationClickable: true,
+    mode: 'vertical'
+    });
+
+
+    $('nav.navbar a').touchstart(function() {
+        $('nav.navbar a').removeClass('current');
+        $(this).addClass('current');
+    });
+  })
+	loaddata()
+    </script>
+
+</body>
+</html>

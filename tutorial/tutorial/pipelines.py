@@ -8,9 +8,9 @@ from scrapy import log
 
 class TutorialPipeline(object):
 	def __init__(self):
-		self.item_count = 0
-		self.error_count = 0
-		self.db = mdb.connect("localhost","root","carlos940413","scrapymovie",True,charset="utf8")
+#		self.item_count = 0
+#		self.error_count = 0
+#		self.db = mdb.connect("localhost","root","carlos_940413","scrapymovie",True,charset="utf8")
 #		self.file = open("items.js","wb")
 		pass
 	def __del__(self):
@@ -18,6 +18,10 @@ class TutorialPipeline(object):
 		pass
 
 	def open_spider(self,spider):
+		self.item_count = 0
+		self.error_count = 0
+		self.db = mdb.connect(spider.mysql_host,spider.mysql_user,spider.mysql_pw,spider.mysql_database,True,charset="utf8")
+#		self.file = open("items.js","wb")
 		pass
 	def close_spider(self,spider):
 		item_msg = u'item ocunt:%d ' % self.item_count
@@ -28,8 +32,8 @@ class TutorialPipeline(object):
 
 	def process_item(self, item, spider):
 		self.cursor = self.db.cursor()
-		insert_temp = "insert into movie(date,title,icon,content,url) values('%s','%s','%s','%s','%s')"
-		insert_sql = insert_temp % (item['issue_date'],item['title'],item['icon'],item['content'],item['download_url'])
+		insert_temp = "insert into movie(type,date,title,icon,content,url) values('%s','%s','%s','%s','%s','%s')"
+		insert_sql = insert_temp % (item['type'],item['issue_date'],item['title'],item['icon'],item['content'],item['download_url'])
 		spider.log(insert_sql,level = log.DEBUG)
 		try:
 			self.cursor.execute(insert_sql)

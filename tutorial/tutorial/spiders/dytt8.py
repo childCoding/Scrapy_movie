@@ -1,7 +1,9 @@
 #-*- coding: utf-8 -*-
 import scrapy
 import re
+import os
 import time
+import json
 from scrapy.exceptions import DropItem
 from scrapy.spiders import CrawlSpider,Rule
 from scrapy.linkextractors import LinkExtractor
@@ -26,7 +28,21 @@ class Dytt8Spider(CrawlSpider):
 	def __init__(self):
 		super(Dytt8Spider,self).__init__()
 		self.starttime = time.time()
+		#init mysql
+		self.log( os.path.dirname(__file__),log.WARNING)
+		self.secret_file = os.path.dirname(__file__) + "/../../../secret.js"
+		with open(self.secret_file,"r") as fo:
+			secret = json.load(fo)
+			self.mysql_host = secret["mysql"]["host"];
+			self.mysql_user = secret["mysql"]["user"];
+			self.mysql_database = secret["mysql"]["database"];
+			self.mysql_pw = secret["mysql"]["pw"];
 
+			self.oss_host = secret["oss"]["host"];
+			self.oss_bucket = secret["oss"]["bucket"];
+			self.oss_keyid = secret["oss"]["AccessKeyID"];
+			self.oss_keysecret = secret["oss"]["AccessKeySecret"];
+			
 	def parse_index(self,response):
 #		self.log("parse_index:%s" % response.url)
 		self.index_urls.append(response.url)
@@ -58,9 +74,9 @@ class Dytt8Spider(CrawlSpider):
 			if time.strptime(issue_date,"%Y-%m-%d") > time.strptime("2014-01-01","%Y-%m-%d"):
 				item['issue_date'] = issue_date
 			else:
-				raise DropItem("issue_date %s" % issue_date)
+				return DropItem("issue_date %s" % issue_date)
 		else:
-			raise DropItem("issue_date is None.")
+			return DropItem("issue_date is None.")
 
 #		content = response.xpath('//div[re:test(@id,"Zoom")]//td//p').extract_first()
 		content = response.xpath('//div[re:test(@id,"Zoom")]').extract_first()
@@ -70,7 +86,7 @@ class Dytt8Spider(CrawlSpider):
 			item['content'] = content
 		else:
 			self.log(u'[%s] content is None.' % response.url, level = log.WARNING)
-			raise DropItem(response.url)
+			return DropItem(response.url)
 
 		item['icon'] = response.xpath('//div[re:test(@id,"Zoom")]//td//p//img//@src').extract_first()
 
