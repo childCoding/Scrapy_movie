@@ -5,13 +5,14 @@ import cgi
 import MySQLdb as mdb
 import json
 import datetime
+import mysqlpool
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
 
 def mysql_select(id):
-	db = mdb.connect("localhost","root","carlos_940413","scrapymovie",charset='utf8')
+	db = mysqlpool.connect()
 	cursor = db.cursor()
 	sql = "select id,icon,type,date,title,content,url from movie where id=%s" % id
 	result = ""

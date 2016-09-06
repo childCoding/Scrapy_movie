@@ -8,10 +8,6 @@ from scrapy import log
 
 class TutorialPipeline(object):
 	def __init__(self):
-#		self.item_count = 0
-#		self.error_count = 0
-#		self.db = mdb.connect("localhost","root","carlos_940413","scrapymovie",True,charset="utf8")
-#		self.file = open("items.js","wb")
 		pass
 	def __del__(self):
 		self.db.close()

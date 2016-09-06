@@ -2,15 +2,16 @@
 # -*- coding: utf-8 -*-
 import sys
 import cgi
-import MySQLdb as mdb
 import json
+import mysqlpool
+import MySQLdb as mdb
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
 
 def mysql_select(ty,page = 0):
-	db = mdb.connect("localhost","root","carlos_940413","scrapymovie",charset='utf8')
+	db = mysqlpool.connect()
 	cursor = db.cursor()
 	sql = r"select id,icon,type,date,title from movie where type='%s' order by date desc limit %d,%d" % (ty,page*10,10)
 
